@@ -1,0 +1,118 @@
+/* ==========================================
+   1. 全局重置与文本设置
+   ========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* 锁定屏幕，不出现滚动条 */
+  
+  /* 字体设置：指定 Arial，并开启全网页自动大写 */
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  text-transform: uppercase; 
+  
+  /* 设置底图背景 */
+  background-image: url('bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  position: relative; /* 为内部元素的绝对定位提供参考参照物 */
+}
+
+/* ==========================================
+   2. 可点击按钮（Nav Links）通用样式
+   ========================================== */
+.nav-link {
+  color: #ffffff;
+  text-decoration: none; /* 清除默认下划线 */
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: opacity 0.2s ease; /* 悬停过渡动画 */
+}
+
+/* 鼠标悬停在按钮上时稍微变透明，给访客提供交互反馈 */
+.nav-link:hover {
+  opacity: 0.6;
+}
+
+/* ==========================================
+   3. 区域布局定位
+   ========================================== */
+
+/* 左上角 ABOUT ME */
+.top-left {
+  position: absolute;
+  top: 40px;
+  left: 45px;
+}
+
+/* 右上角按钮组（竖向排列，右对齐） */
+.top-right-group {
+  position: absolute;
+  top: 40px;
+  right: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* 文字靠右对齐 */
+  gap: 14px;            /* 两行字之间的间距 */
+}
+
+/* 右下角品牌区（小字 + 大名字） */
+.bottom-right-brand {
+  position: absolute;
+  bottom: 25px;
+  right: 35px;
+  display: flex;
+  align-items: flex-end; /* 底部对齐 */
+  gap: 16px;            /* 职位与名字之间的水平间距 */
+}
+
+/* 副标题：CONCEPT ARTIST */
+.job-title {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.15;
+  text-align: right;
+  margin-bottom: 12px;  /* 稍微抬高一点，使其视觉重心与主名字对齐 */
+}
+
+/* 主标题：ZIYA TANG */
+.name-title {
+  font-size: 100px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  line-height: 0.85;    /* 紧凑排版，去除多余文字上下留白 */
+}
+
+/* ==========================================
+   4. 移动端/小屏幕自适应适配
+   ========================================== */
+@media (max-width: 900px) {
+  .name-title {
+    font-size: 55px;
+  }
+  .job-title {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .top-left {
+    top: 25px;
+    left: 25px;
+  }
+  .top-right-group {
+    top: 25px;
+    right: 25px;
+  }
+  .bottom-right-brand {
+    bottom: 20px;
+    right: 20px;
+  }
+}
