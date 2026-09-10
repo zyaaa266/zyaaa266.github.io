@@ -8,6 +8,15 @@
 </head>
 <body>
 
+  <!-- 全屏背景幻灯片容器 -->
+  <div class="bg-slideshow">
+    <!-- 第一张图默认带有 active 类，确保页面刚打开时就能看见 -->
+    <div class="bg-slide active" style="background-image: url('bg1.jpg');"></div>
+    <div class="bg-slide" style="background-image: url('bg2.jpg');"></div>
+    <div class="bg-slide" style="background-image: url('bg3.jpg');"></div>
+    <div class="bg-slide" style="background-image: url('bg4.jpg');"></div>
+  </div>
+
   <!-- 1. 左上角可互动按钮 -->
   <a href="about.html" class="nav-link top-left">ABOUT ME</a>
 
@@ -25,5 +34,7 @@
     <h1 class="name-title">ZIYA TANG</h1>
   </div>
 
+  <!-- 引入逻辑控制脚本 -->
+  <script src="script.js"></script>
 </body>
 </html>

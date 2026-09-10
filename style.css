@@ -10,41 +10,68 @@
 body {
   width: 100vw;
   height: 100vh;
-  overflow: hidden; /* 锁定屏幕，不出现滚动条 */
+  overflow: hidden; /* 锁定屏幕，避免出现滚动条 */
   
-  /* 字体设置：指定 Arial，并开启全网页自动大写 */
   font-family: Arial, sans-serif;
   color: #ffffff;
-  text-transform: uppercase; 
+  text-transform: uppercase; /* 强制全部大写 */
   
-  /* 设置底图背景 */
-  background-image: url('bg.jpg');
+  position: relative;
+  background-color: #0b0f19; /* 加一个深色底色，防止图片还没加载出来时纯白刺眼 */
+}
+
+/* ==========================================
+   2. 全局背景幻灯片（Background Slideshow）
+   ========================================== */
+.bg-slideshow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* 关键点：层级设为 -1，确保底图被钉在文字UI的下方 */
+}
+
+.bg-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   
-  position: relative; /* 为内部元素的绝对定位提供参考参照物 */
+  /* 淡入淡出动画核心：默认完全透明，过渡时间为 2 秒 */
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+/* 当某张图片被赋予 active 标签时，显示出来 */
+.bg-slide.active {
+  opacity: 1;
 }
 
 /* ==========================================
-   2. 可点击按钮（Nav Links）通用样式
+   3. 可点击按钮（Nav Links）通用样式
    ========================================== */
 .nav-link {
   color: #ffffff;
-  text-decoration: none; /* 清除默认下划线 */
+  text-decoration: none;
   font-size: 18px;
   font-weight: bold;
   letter-spacing: 1px;
-  transition: opacity 0.2s ease; /* 悬停过渡动画 */
+  transition: opacity 0.2s ease;
+  z-index: 10;
 }
 
-/* 鼠标悬停在按钮上时稍微变透明，给访客提供交互反馈 */
 .nav-link:hover {
   opacity: 0.6;
 }
 
 /* ==========================================
-   3. 区域布局定位
+   4. 区域布局定位
    ========================================== */
 
 /* 左上角 ABOUT ME */
@@ -54,46 +81,45 @@ body {
   left: 45px;
 }
 
-/* 右上角按钮组（竖向排列，右对齐） */
+/* 右上角按钮组 */
 .top-right-group {
   position: absolute;
   top: 40px;
   right: 45px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* 文字靠右对齐 */
-  gap: 14px;            /* 两行字之间的间距 */
+  align-items: flex-end;
+  gap: 14px;
 }
 
-/* 右下角品牌区（小字 + 大名字） */
+/* 右下角品牌区 */
 .bottom-right-brand {
   position: absolute;
   bottom: 25px;
   right: 35px;
   display: flex;
-  align-items: flex-end; /* 底部对齐 */
-  gap: 16px;            /* 职位与名字之间的水平间距 */
+  align-items: flex-end;
+  gap: 16px;
+  z-index: 10;
 }
 
-/* 副标题：CONCEPT ARTIST */
 .job-title {
   font-size: 18px;
   font-weight: bold;
   line-height: 1.15;
   text-align: right;
-  margin-bottom: 12px;  /* 稍微抬高一点，使其视觉重心与主名字对齐 */
+  margin-bottom: 12px;
 }
 
-/* 主标题：ZIYA TANG */
 .name-title {
   font-size: 100px;
   font-weight: 900;
   letter-spacing: 2px;
-  line-height: 0.85;    /* 紧凑排版，去除多余文字上下留白 */
+  line-height: 0.85;
 }
 
 /* ==========================================
-   4. 移动端/小屏幕自适应适配
+   5. 移动端/小屏幕自适应适配
    ========================================== */
 @media (max-width: 900px) {
   .name-title {
